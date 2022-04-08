@@ -3,6 +3,11 @@ var display = "Not connected to any network";
 var web3 = new Web3(window.ethereum);
 console.log("WEB3 OBJ ==> ",web3);
 var flag;
+window.ethereum.on('accountsChanged',() => {
+    document.getElementById("status").innerText="Status :- Disconnected"
+    document.getElementById("wallet").innerText=""
+} )
+
 async function myETHFunction() {
 
   var network = document.getElementById("network");
@@ -17,7 +22,7 @@ async function myETHFunction() {
     var address = await ethereum.request({ method: "eth_requestAccounts" });
     console.log(address);
     flag = 1;
-  
+    document.getElementById("status").innerText="Status :- Connected"
     let web3 = new Web3(window.ethereum);
   
     var balance = await web3.eth.getBalance(address[0]);
