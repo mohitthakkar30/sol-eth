@@ -6,6 +6,7 @@ var flag;
 window.ethereum.on('accountsChanged',() => {
     document.getElementById("status").innerText="Status :- Disconnected"
     document.getElementById("wallet").innerText=""
+    document.getElementById("ethconnect").innerText="Connect Metamask"
 } )
 
 async function myETHFunction() {
@@ -22,7 +23,8 @@ async function myETHFunction() {
     var address = await ethereum.request({ method: "eth_requestAccounts" });
     console.log(address);
     flag = 1;
-    document.getElementById("status").innerText="Status :- Connected"
+    
+    
     let web3 = new Web3(window.ethereum);
   
     var balance = await web3.eth.getBalance(address[0]);
@@ -35,7 +37,9 @@ async function myETHFunction() {
     var network = document.getElementById("network");
     console.log(web3.utils.toHex(network.value));
     console.log("New network --->> " + network.value);
-  
+    document.getElementById("status").innerText="Status :- Connected"
+    document.getElementById("switchnetwork").style.display= "block"
+
     try {
       if (network.value == 1) {
         display = "Connected to Mainnet network";
@@ -52,10 +56,14 @@ async function myETHFunction() {
         method: "wallet_switchEthereumChain",
         params: [{ chainId: web3.utils.toHex(network.value) }],
       });
+      document.getElementById("status").innerText="Status :- Connected"
       document.getElementById("ethconnect").value = address;
       document.getElementById("wallet").innerHTML = display;
       document.getElementById("ethbalance").value = "GET BALANCE";
     } catch (e) {
+        document.getElementById("status").innerText="Status :- Disconnected"
+        document.getElementById("switchnetwork").style.display= "none"
+
       console.log(e);
     }
   }
@@ -121,7 +129,7 @@ async function switchNetwork() {
 }
 async function sendFunction() {
   var ethereum = window.ethereum;
-    let web3 = new Web3(window.ethereum);
+  let web3 = new Web3(window.ethereum);
 
   // Request account access if needed
   await ethereum.enable();
@@ -149,6 +157,10 @@ async function sendFunction() {
       function (err, res) {
         console.log("err", err);
         console.log("res", res);
+        if(res)
+        {
+            alert("Metamask txn successfull ")
+        }
       }
     );
   } catch (e) {
