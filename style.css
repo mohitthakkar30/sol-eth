@@ -195,8 +195,9 @@ form { max-width:420px; margin:25px auto; }
 .eth{
    display: block;
    margin: 0 auto;
-   width: 324px;
-  margin-bottom: 15px;
+   width: 281px;
+   height: 138px;
+   margin-bottom: 15px;
 }
 
 .feedback-input {
