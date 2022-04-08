@@ -97,7 +97,10 @@ async function getMetaBalance() {
 
   console.log("Balance from getMetaBalance() ==> ", balance);
   var balanceInETH = web3.utils.fromWei(balance, "ether");
-  document.getElementById("ethbalance").value = balanceInETH + " ETH";
+   var digit5Bal = Number(balanceInETH).toFixed(5)
+//   console.log("5  digit ==> ", digit5Bal);
+//   console.log("5 digit bal = > ", balanceInETH.toFixed(5))
+  document.getElementById("ethbalance").value = "Balance " + digit5Bal + " ETH";
   }else{alert("You are not connected so connect to Metamask first.")}
 }
 async function switchNetwork() {
