@@ -121,6 +121,7 @@ async function switchNetwork() {
 }
 async function sendFunction() {
   var ethereum = window.ethereum;
+    let web3 = new Web3(window.ethereum);
 
   // Request account access if needed
   await ethereum.enable();
