@@ -184,6 +184,10 @@ async function sendFunction() {
         {
             alert("Metamask txn successfull ")
         }
+          else
+        {
+            alert("User cancelled the txn.")
+        }
       }
     );
   } catch (e) {
