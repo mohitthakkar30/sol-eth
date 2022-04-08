@@ -263,7 +263,7 @@ async function getMyBalance() {
 
     connection.getBalance(provider.publicKey).then(function (value) {
       console.log("Balance: " + value / 1000000000 + " SOL");
-      document.getElementById("mySolBalance").value =
+      document.getElementById("mySolBalance").value = "Balance "+
         value / 1000000000 + " SOL";
     });
   }
