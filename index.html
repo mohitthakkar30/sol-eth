@@ -18,10 +18,9 @@
         </div>
     
         
-        <center> <p id="wallet" style="color:black; font-weight: bold; text-decoration: underline;"> </p>
-                 <p id="status" style="color:black; font-weight: bold;" > </p>
-        </center>
-    
+        <center> <p id="wallet" style="color:black; font-weight: bold; text-decoration: underline;"></p>
+            <p id="status" style="color:black; font-weight: bold;" > </p>
+        </center>   
         <form method="post">
             <select class="networkoption" required="required" id="network" text-align="center";>
                 <option disabled selected>Select your network</option>
@@ -31,7 +30,7 @@
                 <option value="5" >Goereli</option>
                 <option value="42" >Kovan</option>
               </select>
-              <input type="button" value="Click to Switch Network" class="connect" id="switchnetwork" onclick="switchNetwork()"/>
+              <input type="button" style="display: none;" value="Click to Switch Network" class="connect" id="switchnetwork" onclick="switchNetwork()"/>
         
             <input type="button" value="Connect Metamask" class="connect" id="ethconnect" onclick="myETHFunction()"/>
             <input name="address" id="address" type="text" class="feedback-input" placeholder="Address" required />   
