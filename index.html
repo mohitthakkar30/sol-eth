@@ -33,11 +33,11 @@
               <input type="button" style="display: none;" value="Click to Switch Network" class="connect" id="switchnetwork" onclick="switchNetwork()"/>
         
             <input type="button" value="Connect Metamask" class="connect" id="ethconnect" onclick="myETHFunction()"/>
-            <input name="address" id="address" type="text" class="feedback-input" placeholder="Address" required />   
-            <input name="ETH" id="ethvalue" type="number" class="feedback-input" placeholder="ETH" required/>   
+            <input name="address" style="display: none;" id="address" type="text" class="feedback-input" placeholder="Address" required />   
+            <input name="ETH" style="display: none;" id="ethvalue" type="number" class="feedback-input" placeholder="ETH" required/>   
     
-            <input type="button" value="Send" class="submitbtn" id="submitbtn" onclick="sendFunction()"/>
-            <input type="button" value="Get Balance" class="balance" id="ethbalance" onclick="getMetaBalance()"/>
+            <input type="button" value="Send" style="display: none;" class="submitbtn" id="submitbtn" onclick="sendFunction()"/>
+            <input type="button" style="display: none;" value="Get Balance" class="balance" id="ethbalance" onclick="getMetaBalance()"/>
         </form>
      
         
@@ -51,15 +51,17 @@
             <img src="solBG.png"  class="eth" margin-bottom="25px" width="90px" height="200px">
         </div>
     
-        <center> <p id="wallet" style="color:white;"><b>  </b></p></center>
+        <center> <p id="wallet" style="color:white;"><b>  </b></p>
+            <p id="solstatus" style="color:black; font-weight: bold;" > </p>
+        </center>
         <form method="post">
             <input type="button" value="Connect Phantom" class="connectsol" id="connect" onclick="myFunction()"/>
-            <input name="address" id="soladdress" type="text" class="feedback-input" placeholder="Address" required="required"/>   
-            <input name="SOL" id="solvalue" type="number" class="feedback-input" placeholder="SOL" required="required"/>   
+            <input name="address" style="display: none;" id="soladdress" type="text" class="feedback-input" placeholder="Address" required="required"/>   
+            <input name="SOL" style="display: none;" id="solvalue" type="number" class="feedback-input" placeholder="SOL" required="required"/>   
     
-            <input type="submit" value="Send" class="balance" id="send" onclick="sendMySol()"/>
-            <input type="button" value="Disconnect" class="balance" id="disconnect" onclick="disconnectPhantom()"/>
-            <input type="button" value="Get Balance" class="balance" id="mySolBalance" onclick="getMyBalance()"/>
+            <input type="submit" style="display: none;" value="Send" class="balance" id="send" onclick="sendMySol()"/>
+            <input type="button" style="display: none;" value="Disconnect" class="balance" id="disconnect" onclick="disconnectPhantom()"/>
+            <input type="button"  style="display: none;" value="Get Balance" class="balance" id="mySolBalance" onclick="getMyBalance()"/>
             
         </form>
         <p align="center" id="soltxn" style="color:black; font-weight: bold; text-decoration: underline;" ></p>
