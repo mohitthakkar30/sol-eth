@@ -6,7 +6,12 @@ var flag;
 window.ethereum.on('accountsChanged',() => {
     document.getElementById("status").innerText="Status :- Disconnected"
     document.getElementById("wallet").innerText=""
-    document.getElementById("ethconnect").innerText="Connect Metamask"
+    document.getElementById("ethconnect").value="Connect Metamask"
+    document.getElementById("switchnetwork").style.display= "none"
+        document.getElementById("address").style.display= "none"
+        document.getElementById("ethvalue").style.display= "none"
+        document.getElementById("submitbtn").style.display= "none"
+        document.getElementById("ethbalance").style.display= "none"
 } )
 
 async function myETHFunction() {
@@ -39,6 +44,10 @@ async function myETHFunction() {
     console.log("New network --->> " + network.value);
     document.getElementById("status").innerText="Status :- Connected"
     document.getElementById("switchnetwork").style.display= "block"
+    document.getElementById("address").style.display= "block"
+    document.getElementById("ethvalue").style.display= "block"
+    document.getElementById("submitbtn").style.display= "block"
+    document.getElementById("ethbalance").style.display= "block"
 
     try {
       if (network.value == 1) {
@@ -63,6 +72,11 @@ async function myETHFunction() {
     } catch (e) {
         document.getElementById("status").innerText="Status :- Disconnected"
         document.getElementById("switchnetwork").style.display= "none"
+        document.getElementById("ethconnect").value="Connect Metamask"
+        document.getElementById("address").style.display= "none"
+        document.getElementById("ethvalue").style.display= "none"
+        document.getElementById("submitbtn").style.display= "none"
+        document.getElementById("ethbalance").style.display= "none"
 
       console.log(e);
     }
@@ -114,11 +128,18 @@ async function switchNetwork() {
       if (network.value == 42) {
         display = "Connected to Kovan network";
       }
-
+      var balance = await web3.eth.getBalance(address[0]);
       document.getElementById("wallet").innerHTML = display;
       var balanceInETH = web3.utils.fromWei(balance, "ether");
       document.getElementById("ethbalance").value = balanceInETH + " ETH";
     } catch (e) {
+        document.getElementById("status").innerText="Status :- Disconnected"
+        document.getElementById("switchnetwork").style.display= "none"
+        document.getElementById("address").style.display= "none"
+        document.getElementById("ethconnect").value="Connect Metamask"
+        document.getElementById("ethvalue").style.display= "none"
+        document.getElementById("submitbtn").style.display= "none"
+        document.getElementById("ethbalance").style.display= "none"
       console.log(e);
     }
     getMetaBalance()
@@ -172,6 +193,22 @@ async function sendFunction() {
 
 // const provider = window.solana;
 var web3 = solanaWeb3; //window.solana
+window.solana.on('disconnect', () => {
+    document.getElementById("solstatus").innerText="Status:- Disconnected"
+    document.getElementById("send").style.display= "none"
+    document.getElementById("soladdress").style.display= "none"
+    document.getElementById("disconnect").style.display= "none"
+    document.getElementById("solvalue").style.display= "none"
+    document.getElementById("mySolBalance").style.display= "none"
+})
+window.solana.on("connect", ()  => {
+    document.getElementById("solstatus").innerText="Status:- Connected"
+    document.getElementById("send").style.display= "block"
+    document.getElementById("soladdress").style.display= "block"
+    document.getElementById("disconnect").style.display= "block"
+    document.getElementById("solvalue").style.display= "block"
+    document.getElementById("mySolBalance").style.display= "block"
+})
 var sender = {
   pubKey: null,
   balance: 0,
