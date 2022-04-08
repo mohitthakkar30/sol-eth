@@ -103,6 +103,7 @@ async function getMetaBalance() {
 async function switchNetwork() {
     let web3 = new Web3(window.ethereum);
 
+    var address = await ethereum.request({ method: "eth_requestAccounts" });
   if (flag === 1) {
     var network = document.getElementById("network");
     console.log(web3.utils.toHex(network.value));
@@ -128,19 +129,17 @@ async function switchNetwork() {
       if (network.value == 42) {
         display = "Connected to Kovan network";
       }
+
+      console.log("Network Name from switch ==> ",display);
+
       var balance = await web3.eth.getBalance(address[0]);
-      document.getElementById("wallet").innerHTML = display;
       var balanceInETH = web3.utils.fromWei(balance, "ether");
+      document.getElementById("wallet").innerHTML = display;
       document.getElementById("ethbalance").value = balanceInETH + " ETH";
     } catch (e) {
-        document.getElementById("status").innerText="Status :- Disconnected"
-        document.getElementById("switchnetwork").style.display= "none"
-        document.getElementById("address").style.display= "none"
-        document.getElementById("ethconnect").value="Connect Metamask"
-        document.getElementById("ethvalue").style.display= "none"
-        document.getElementById("submitbtn").style.display= "none"
-        document.getElementById("ethbalance").style.display= "none"
+        
       console.log(e);
+
     }
     getMetaBalance()
   } else {
