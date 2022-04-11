@@ -210,10 +210,12 @@ async function sendFunction() {
 var web3 = solanaWeb3; //window.solana
 window.solana.on("disconnect", () => {
   document.getElementById("solstatus").innerText = "Status:- Disconnected";
+  document.getElementById("currentnetwork").innerText = "";
   document.getElementById("send").style.display = "none";
   document.getElementById("soladdress").style.display = "none";
   document.getElementById("disconnect").style.display = "none";
   document.getElementById("solvalue").style.display = "none";
+  document.getElementById("solnetwork").style.display = "none"
 
   document.getElementById("tx").style.display = "none";
   document.getElementById("soltxn").style.display = "none";
@@ -225,6 +227,10 @@ window.solana.on("connect", () => {
   document.getElementById("send").style.display = "block";
   document.getElementById("soladdress").style.display = "block";
   document.getElementById("disconnect").style.display = "block";
+  document.getElementById("solnetwork").style.display = "block"
+  // var currentNetwork = web3.clusterApiUrl;
+  // console.log("Current network ==> ", currentNetwork.url);
+  
   document.getElementById("solvalue").style.display = "block";
   document.getElementById("mySolBalance").style.display = "block";
 });
@@ -249,6 +255,21 @@ async function myFunction() {
             var myKey = test.publicKey.toString();
             document.getElementById("connect").value = myKey;
             flag = 1;
+            var solnetwork = document.getElementById("solnetwork");
+            console.log("Log of solnetwork ==> ", solnetwork.value + "type of this = " +typeof(solnetwork.value));
+            
+            var connection = new solanaWeb3.Connection(
+              solanaWeb3.clusterApiUrl(solnetwork.value),
+              "confirmed"
+            );
+            if(solnetwork.value === "mainnet-beta")
+            document.getElementById("currentnetwork").innerHTML = "Network:- Mainnet ";
+            if(solnetwork.value === "testnet")
+            document.getElementById("currentnetwork").innerText = "Network:- Testnet ";
+            if(solnetwork.value === "devnet")
+            document.getElementById("currentnetwork").innerText = "Network:- Devnet ";
+
+            // document.getElementById("currentnetwork").innerText = "Network:- ";
             console.log("Public key ==> ", test.publicKey.toString());
             sender.pubKey = test.publicKey;
             //  sender.balance = getMyBalance();
@@ -272,12 +293,18 @@ async function getMyBalance() {
     alert("Connect to phantom first.");
   } else {
     var provider = window.solana;
-    var network = document.getElementById("network");
+    var solnetwork = document.getElementById("solnetwork");
     var connection = new solanaWeb3.Connection(
-      solanaWeb3.clusterApiUrl("testnet"),
+      solanaWeb3.clusterApiUrl(solnetwork.value),
       "confirmed"
     );
-
+            if(solnetwork.value === "mainnet-beta")
+            document.getElementById("currentnetwork").innerHTML = "Network:- Mainnet ";
+            if(solnetwork.value === "testnet")
+            document.getElementById("currentnetwork").innerText = "Network:- Testnet ";
+            if(solnetwork.value === "devnet")
+            document.getElementById("currentnetwork").innerText = "Network:- Devnet ";
+     
     connection.getBalance(provider.publicKey).then(function (value) {
       console.log("Balance: " + value / 1000000000 + " SOL");
       document.getElementById("mySolBalance").value =
@@ -314,9 +341,10 @@ const sendMySol = async () => {
     console.log("Empty receiver  ===>  ", receiver.value);
     var sol = solvalue.value;
     console.log("SOL VALUE ==== ", solvalue.value);
+    var solnetwork = document.getElementById("solnetwork");
 
     var connection = new solanaWeb3.Connection(
-      solanaWeb3.clusterApiUrl("testnet"),
+      solanaWeb3.clusterApiUrl(solnetwork.value),
       "confirmed"
     );
     console.log("Receive wallet ==> ", finalReceiver.toString());
