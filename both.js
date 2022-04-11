@@ -205,6 +205,10 @@ window.solana.on('disconnect', () => {
     document.getElementById("soladdress").style.display= "none"
     document.getElementById("disconnect").style.display= "none"
     document.getElementById("solvalue").style.display= "none"
+     
+    document.getElementById("tx").style.display = "none"
+    document.getElementById("soltxn").style.display = "none"
+    
     document.getElementById("mySolBalance").style.display= "none"
 })
 window.solana.on("connect", ()  => {
