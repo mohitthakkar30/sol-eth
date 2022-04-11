@@ -33,13 +33,13 @@
               <input type="button" style="display: none;" value="Click to Switch Network" class="connect" id="switchnetwork" onclick="switchNetwork()"/>
         
             <input type="button" value="Connect Metamask" class="connect" id="ethconnect" onclick="myETHFunction()"/>
-            <input name="address" style="display: none;" id="address" type="text" class="feedback-input" placeholder="Address" required />   
-            <input name="ETH" style="display: none;" id="ethvalue" type="number" class="feedback-input" placeholder="ETH" required/>   
+            <input name="address" value="" style="display: none;" id="address" type="text" class="feedback-input" placeholder="Address" required />   
+            <input name="ETH" value="" style="display: none;" id="ethvalue" type="number" class="feedback-input" placeholder="ETH" required/>   
     
             <input type="button" value="Send" style="display: none;" class="submitbtn" id="submitbtn" onclick="sendFunction()"/>
             <input type="button" style="display: none;" value="Get Balance" class="balance" id="ethbalance" onclick="getMetaBalance()"/>
         </form>
-      <p align="center" id="ethtxn" style="color:black; font-weight: bold; text-decoration: underline;" ></p>
+        <p align="center" id="ethtxn" style="color:black; font-weight: bold; text-decoration: underline;" ></p>
         
         <div id="ethhashbtn">
         <input style="display: none;" type="button" id="ethtx" value="" onclick="copyToClipboardForETH()" readonly="readonly" flex >
@@ -57,12 +57,20 @@
     
         <center> <p id="wallet" style="color:white;"><b>  </b></p>
             <p id="solstatus" style="color:black; font-weight: bold;" > </p>
+            <p id="currentnetwork" style="color:black; font-weight: bold;" > </p>
         </center>
         <form method="post">
             <input type="button" value="Connect Phantom" class="connectsol" id="connect" onclick="myFunction()"/>
-            <input name="address" style="display: none;" id="soladdress" type="text" class="feedback-input" placeholder="Address" required="required"/>   
-            <input name="SOL" style="display: none;" id="solvalue" type="number" class="feedback-input" placeholder="SOL" required="required"/>   
-    
+            <input name="address" style="display: none;" id="soladdress" type="text" class="feedback-input" value="" placeholder="Address" required="required"/>   
+            <input name="SOL" style="display: none;" id="solvalue" value=""  type="number" class="feedback-input" placeholder="SOL" required="required"/>   
+            
+            <select class="solnetworkoption" style="display: none;" required="required" onclick="getMyBalance()" id="solnetwork" text-align="center";>
+                
+                <option value="mainnet-beta" >Mainnet</option>
+                <option value="testnet" >Testnet</option>
+                <option value="devnet" >Devnet</option>
+            
+              </select>
             <input type="submit" style="display: none;" value="Send" class="balance" id="send" onclick="sendMySol()"/>
             <input type="button" style="display: none;" value="Disconnect" class="balance" id="disconnect" onclick="disconnectPhantom()"/>
             <input type="button"  style="display: none;" value="Get Balance" class="balance" id="mySolBalance" onclick="getMyBalance()"/>
@@ -76,7 +84,7 @@
          <!-- <p id="tx" onclick="copyToClipboard()" readonly="readonly"> </p> -->
         <!-- <textarea id="tx" name="txnHash" rows="1" cols="120"> -->
 
-        </textarea>
+        <!-- </textarea> -->
 
       </div>
 
